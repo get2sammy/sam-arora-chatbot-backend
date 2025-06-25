@@ -1,0 +1,11 @@
+{
+  "name": "sam-arora-chatbot-backend",
+  "version": "1.0.0",
+  "description": "API proxy for chatbot",
+  "main": "api/chat.js",
+  "scripts": {
+    "start": "node api/chat.js"
+  },
+  "author": "Sam Arora",
+  "license": "ISC"
+}
