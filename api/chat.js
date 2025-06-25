@@ -3,6 +3,22 @@
 
 // This function will be triggered when your frontend calls '/api/chat'.
 export default async function handler(request, response) {
+    // Set CORS headers to allow requests from your frontend
+    // For production, you can replace '*' with your specific frontend URL for better security
+    response.setHeader('Access-Control-Allow-Credentials', true);
+    response.setHeader('Access-Control-Allow-Origin', '*'); 
+    response.setHeader('Access-Control-Allow-Methods', 'POST,OPTIONS');
+    response.setHeader(
+        'Access-Control-Allow-Headers',
+        'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+    );
+
+    // Handle preflight OPTIONS request for CORS
+    if (request.method === 'OPTIONS') {
+        response.status(200).end();
+        return;
+    }
+
     // 1. Check for POST request
     if (request.method !== 'POST') {
         return response.status(405).json({ error: 'Method Not Allowed' });
